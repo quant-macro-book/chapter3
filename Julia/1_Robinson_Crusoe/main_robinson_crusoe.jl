@@ -9,9 +9,7 @@ include("Utils.jl")
 include("BellmanEq.jl")
 include("Robinson_crusoe.jl")
 
-default(show = true)
-m = Models() #パラメータを含む構造体のインスタンス
-
+m = Models()
 #=実行=#
 vfcn, pfcn, cfcn = Robinson_crusoe(m)
 @time Robinson_crusoe(m)

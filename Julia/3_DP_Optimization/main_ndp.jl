@@ -10,7 +10,6 @@ include("Models.jl")
 include("Utils.jl")
 include("ndp.jl")
 
-default(show = true)
 m = Models(nk=21, kmax= 0.5) # パラメータを含む構造体のインスタンス
 
 # 実行
@@ -96,6 +95,9 @@ xlabel!(L"\mathrm{Amount\ of\ capital :  k }")
 #savefig("Fig3_pndp5.pdf")
 display(plt5)
 
+dir = pwd()
+text_path = dir * "/Julia/3_DP_Optimization"
+cd(text_path)
 err2 = readdlm("err_ddp.txt")
 err2 = vec(err2);
 

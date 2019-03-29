@@ -8,7 +8,6 @@ include("Utils.jl")
 include("Models.jl")
 include("ddp.jl")
 
-default(show = true)
 m = Models(nk = 10001, kmax = 0.5) # パラメータを含む構造体のインスタンス
 
 # 実行

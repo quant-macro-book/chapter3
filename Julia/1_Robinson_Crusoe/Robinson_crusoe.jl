@@ -1,4 +1,4 @@
-function Robinson_crusoe(m::Models)
+function Robinson_crusoe(m)
     """
     最適化(optimization)と内挿法(interpolation)をつかって
     ロビンソン・クルーソー経済を解く.
