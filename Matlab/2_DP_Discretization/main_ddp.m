@@ -45,7 +45,6 @@ pfcn  = zeros(nk, 1);
 Tvfcn = zeros(nk, 1);
 Tpfcn = zeros(nk, 1);
 vkp   = zeros(nk, nk);
-valfn = zeros(nk, 1);
 val_tmp = zeros(nk, 4);
 
 %% STEP 3: Œø—pŠÖ”‚Ì‘g‚İ‡‚í‚¹
