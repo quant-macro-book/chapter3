@@ -94,11 +94,11 @@ end
 %% 図を描く
 
 figure;
-plot(kgrid, vfcn(:,TT), '-', 'linewidth', 3); hold('on');
-plot(kgrid, vfcn(:,9), '-.', 'linewidth', 3);
-plot(kgrid, vfcn(:,8), '--', 'linewidth', 3);
-plot(kgrid, vfcn(:,7), ':', 'linewidth', 3);
-plot(kgrid, vfcn(:,1), '-', 'linewidth', 3); hold('off');
+plot(kgrid, vfcn(:,TT), '-', 'color', 'black', 'linewidth', 3); hold('on');
+plot(kgrid, vfcn(:,9), '-.', 'color', 'black', 'linewidth', 3);
+plot(kgrid, vfcn(:,8), '--', 'color', 'black', 'linewidth', 3);
+plot(kgrid, vfcn(:,7), ':', 'color', 'black', 'linewidth', 3);
+plot(kgrid, vfcn(:,1), '-', 'color', 'black', 'linewidth', 3); hold('off');
 %title('価値関数', 'fontsize', 16);
 xlabel('資本保有量：k_{t}', 'Fontsize', 16);
 ylabel('価値関数：V_{t}(k_{t})', 'Fontsize', 16);
@@ -108,11 +108,11 @@ set(gca,'Fontsize',16);
 saveas (gcf,'Fig3_rc1.eps','epsc2');
 
 figure;
-plot(kgrid, pfcn(:,TT), '-', 'linewidth', 3); hold('on');
-plot(kgrid, pfcn(:,9), '-.', 'linewidth', 3);
-plot(kgrid, pfcn(:,8), '--', 'linewidth', 3);
-plot(kgrid, pfcn(:,7), ':', 'linewidth', 3);
-plot(kgrid, pfcn(:,1), '-', 'linewidth', 3); hold('off');
+plot(kgrid, pfcn(:,TT), '-', 'color', 'black', 'linewidth', 3); hold('on');
+plot(kgrid, pfcn(:,9), '-.', 'color', 'black', 'linewidth', 3);
+plot(kgrid, pfcn(:,8), '--', 'color', 'black', 'linewidth', 3);
+plot(kgrid, pfcn(:,7), ':', 'color', 'black', 'linewidth', 3);
+plot(kgrid, pfcn(:,1), '-', 'color', 'black', 'linewidth', 3); hold('off');
 %title('政策関数', 'fontsize', 16);
 xlabel('t期の資本保有量：k_{t}', 'Fontsize', 16);
 ylabel("t+1期の資本保有量：k_{t+1}", 'Fontsize', 16);
@@ -122,11 +122,11 @@ set(gca,'Fontsize',16);
 saveas (gcf,'Fig3_rc2.eps','epsc2');
 
 figure;
-plot(kgrid, cfcn(:,TT), '-', 'linewidth', 3); hold('on');
-plot(kgrid, cfcn(:,9), '-.', 'linewidth', 3);
-plot(kgrid, cfcn(:,8), '--', 'linewidth', 3);
-plot(kgrid, cfcn(:,7), ':', 'linewidth', 3);
-plot(kgrid, cfcn(:,1), '-', 'linewidth', 3); hold('off');
+plot(kgrid, cfcn(:,TT), '-', 'color', 'black', 'linewidth', 3); hold('on');
+plot(kgrid, cfcn(:,9), '-.', 'color', 'black', 'linewidth', 3);
+plot(kgrid, cfcn(:,8), '--', 'color', 'black', 'linewidth', 3);
+plot(kgrid, cfcn(:,7), ':', 'color', 'black', 'linewidth', 3);
+plot(kgrid, cfcn(:,1), '-', 'color', 'black', 'linewidth', 3); hold('off');
 %title('消費関数', 'fontsize', 16);
 xlabel('資本保有量：k_{t}', 'Fontsize', 16);
 ylabel('消費：c_{t}', 'Fontsize', 16);
@@ -136,10 +136,10 @@ set(gca,'Fontsize',16);
 saveas (gcf,'Fig3_rc3.eps','epsc2');
 
 figure;
-plot(kgrid, pfcn(:,9), '-', 'linewidth', 3); hold('on');
-plot(kgrid, p_true(:,9), '-.', 'linewidth', 3);
-plot(kgrid, pfcn(:,1), ':', 'linewidth', 3);
-plot(kgrid, p_true(:,1), '-', 'linewidth', 3); hold('off');
+plot(kgrid, pfcn(:,9), '-', 'color', 'black', 'linewidth', 3); hold('on');
+plot(kgrid, p_true(:,9), '-.', 'color', 'black', 'linewidth', 3);
+plot(kgrid, pfcn(:,1), ':', 'color', 'black', 'linewidth', 3);
+plot(kgrid, p_true(:,1), '-', 'color', 'black', 'linewidth', 3); hold('off');
 %title('真の政策関数と近似解', 'fontsize', 16);
 xlabel('t期の資本保有量：k_{t}', 'Fontsize', 16);
 ylabel('t+1期の資本保有量：k_{t+1}', 'Fontsize', 16);

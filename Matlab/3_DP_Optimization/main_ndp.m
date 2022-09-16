@@ -140,8 +140,8 @@ err2 = csvread("err_ddp.csv");
 %% 図を描く
 
 figure;
-plot(kgrid, vfcn0, '-', 'color', 'blue', 'linewidth', 3); hold('on');
-plot(kgrid, v_true, '--', 'color', 'red', 'linewidth', 3); hold('off');
+plot(kgrid, vfcn0, '-', 'color', 'black', 'linewidth', 3); hold('on');
+plot(kgrid, v_true, '--', 'color', 'black', 'linewidth', 3); hold('off');
 %title('価値関数', 'fontsize', 16);
 xlabel('資本保有量：k', 'Fontsize', 16);
 ylabel('価値関数：V(k)', 'Fontsize', 16);
@@ -152,8 +152,8 @@ set(gca,'Fontsize', 16);
 saveas (gcf,'Fig3_pndp1.eps','epsc2');
 
 figure;
-plot(kgrid, pfcn0, '-', 'color', 'blue', 'linewidth', 3); hold('on');
-plot(kgrid, p_true, '--', 'color', 'red', 'linewidth', 3);
+plot(kgrid, pfcn0, '-', 'color', 'black', 'linewidth', 3); hold('on');
+plot(kgrid, p_true, '--', 'color', 'black', 'linewidth', 3);
 plot(kgrid, kgrid, ':', 'color', 'black', 'linewidth', 2); hold('off');
 %title('政策関数', 'fontsize', 16);
 xlabel('今期の資本保有量：k', 'Fontsize', 16);
@@ -165,7 +165,7 @@ set(gca,'Fontsize', 16);
 saveas (gcf,'Fig3_pndp2.eps','epsc2');
 
 figure;
-plot(kgrid, cfcn(:,1), '-', 'color', 'blue', 'linewidth', 3);
+plot(kgrid, cfcn(:,1), '-', 'color', 'black', 'linewidth', 3);
 %title('消費関数', 'fontsize', 16);
 xlabel('資本保有量：k', 'Fontsize', 16);
 ylabel('消費：c', 'Fontsize', 16);
@@ -176,8 +176,8 @@ saveas (gcf,'Fig3_pndp3.eps','epsc2');
 iter = linspace(1, it-1, it-1);
 
 figure;
-plot(iter, dif(1, :), '-', 'color', 'blue', 'linewidth', 2); hold('on');
-plot(iter, dif(2, :), ':', 'color', 'red', 'linewidth', 2); hold('off');
+plot(iter, dif(1, :), '-', 'color', 'black', 'linewidth', 2); hold('on');
+plot(iter, dif(2, :), ':', 'color', 'black', 'linewidth', 2); hold('off');
 %title('価値関数・政策関数の収束', 'fontsize', 16);
 xlabel('計算回数', 'Fontsize', 16);
 ylabel('繰り返し計算誤差', 'Fontsize', 16);
@@ -188,7 +188,7 @@ set(gca,'Fontsize', 16);
 saveas (gcf,'Fig3_pndp4.eps','epsc2');
 
 figure;
-plot(kgrid, err, '-', 'color', 'blue', 'linewidth', 3);
+plot(kgrid, err, '-', 'color', 'black', 'linewidth', 3);
 %title('オイラー方程式の誤差', 'fontsize', 16);
 xlabel('資本保有量：k', 'Fontsize', 16);
 ylabel('オイラー方程式誤差', 'Fontsize', 16);
@@ -197,8 +197,8 @@ set(gca,'Fontsize', 16);
 saveas (gcf,'Fig3_pndp5.eps','epsc2');
 
 figure;
-plot(kgrid, err2, '-', 'color', 'blue', 'linewidth', 3); hold('on');
-plot(kgrid, err, '--', 'color', 'red', 'linewidth', 3); hold('off');
+plot(kgrid, err2, '-', 'color', 'black', 'linewidth', 3); hold('on');
+plot(kgrid, err, '--', 'color', 'black', 'linewidth', 3); hold('off');
 %title('オイラー方程式の誤差', 'fontsize', 16);
 xlabel('資本保有量：k', 'Fontsize', 16);
 ylabel('オイラー方程式誤差', 'Fontsize', 16);
