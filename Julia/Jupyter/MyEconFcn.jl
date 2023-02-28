@@ -4,7 +4,7 @@ module MyEconFcn
 Collect functions used in Economics.
 =#
 
-export crra, mu_crra, mu_crra_inv, cobb_douglas, factor_price, accidental_bequest
+export crra, mu_crra, mu_crra_inv, cobb_douglas, factor_price
 
 """
 crra(cons::Float64, γ::Float64)
