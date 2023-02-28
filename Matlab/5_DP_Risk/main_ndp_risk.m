@@ -14,8 +14,8 @@ beta  = 0.96; % 割引因子
 gamma = 1.0;  % 相対的危険回避度(異時点間の代替の弾力性の逆数)
 alpha = 0.40; % 資本分配率
 delta = 1.00; % 固定資本減耗(0.08)
-tfp   = [1.1, 0.9];
-Pi_A  = [0.9 0.1; 0.2 0.8];
+tfp   = [1.01, 0.99];
+Pi_A  = [1-0.125 0.125; 0.125 1-0.125];
 
 % *** 離散化用のパラメータ ***
 nk   = 21;    % グリッドの数
@@ -131,6 +131,7 @@ plot(kgrid, kgrid, ':', 'linewidth', 2); hold('off');
 xlabel('今期の資本保有量：k', 'Fontsize', 16);
 ylabel("次期の資本保有量：k'", 'Fontsize', 16);
 xlim([0, kmax]);
+ylim([0, kmax]);
 legend('好況', '不況', '45度線', 'Location', 'NorthWest');
 grid on;
 set(gca,'Fontsize', 16);
@@ -159,6 +160,7 @@ plot(kgrid, kgrid, ':', 'color', 'black', 'linewidth', 2); hold('off');
 xlabel('今期の資本保有量：k', 'Fontsize', 16);
 ylabel("次期の資本保有量：k'", 'Fontsize', 16);
 xlim([0, kmax]);
+ylim([0, kmax]);
 legend('好況', '不況', '45度線', 'Location', 'NorthWest');
 grid on;
 set(gca,'Fontsize', 16);
