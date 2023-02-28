@@ -94,6 +94,20 @@ end
 %% 図を描く
 
 figure;
+plot(kgrid, vfcn(:,TT), '-', 'linewidth', 3); hold('on');
+plot(kgrid, vfcn(:,9), '-.', 'linewidth', 3);
+plot(kgrid, vfcn(:,8), '--', 'linewidth', 3);
+plot(kgrid, vfcn(:,7), ':', 'linewidth', 3);
+plot(kgrid, vfcn(:,1), '-', 'linewidth', 3); hold('off');
+%title('価値関数', 'fontsize', 16);
+xlabel('資本保有量：k_{t}', 'Fontsize', 16);
+ylabel('価値関数：V_{t}(k_{t})', 'Fontsize', 16);
+legend('10期', '9期', '8期', '7期', '1期', 'Location', 'SouthEast');
+grid on;
+set(gca,'Fontsize',16);
+saveas (gcf,'Fig3_rc1.eps','epsc2');
+
+figure;
 plot(kgrid, vfcn(:,TT), '-', 'color', 'black', 'linewidth', 3); hold('on');
 plot(kgrid, vfcn(:,9), '-.', 'color', 'black', 'linewidth', 3);
 plot(kgrid, vfcn(:,8), '--', 'color', 'black', 'linewidth', 3);
@@ -105,7 +119,21 @@ ylabel('価値関数：V_{t}(k_{t})', 'Fontsize', 16);
 legend('10期', '9期', '8期', '7期', '1期', 'Location', 'SouthEast');
 grid on;
 set(gca,'Fontsize',16);
-saveas (gcf,'Fig3_rc1.eps','epsc2');
+saveas (gcf,'Fig3_rc1_bk.eps','epsc2');
+
+figure;
+plot(kgrid, pfcn(:,TT), '-', 'linewidth', 3); hold('on');
+plot(kgrid, pfcn(:,9), '-.', 'linewidth', 3);
+plot(kgrid, pfcn(:,8), '--', 'linewidth', 3);
+plot(kgrid, pfcn(:,7), ':', 'linewidth', 3);
+plot(kgrid, pfcn(:,1), '-', 'linewidth', 3); hold('off');
+%title('政策関数', 'fontsize', 16);
+xlabel('t期の資本保有量：k_{t}', 'Fontsize', 16);
+ylabel("t+1期の資本保有量：k_{t+1}", 'Fontsize', 16);
+legend('10期', '9期', '8期', '7期', '1期', 'Location', 'SouthEast');
+grid on;
+set(gca,'Fontsize',16);
+saveas (gcf,'Fig3_rc2.eps','epsc2');
 
 figure;
 plot(kgrid, pfcn(:,TT), '-', 'color', 'black', 'linewidth', 3); hold('on');
@@ -119,7 +147,21 @@ ylabel("t+1期の資本保有量：k_{t+1}", 'Fontsize', 16);
 legend('10期', '9期', '8期', '7期', '1期', 'Location', 'SouthEast');
 grid on;
 set(gca,'Fontsize',16);
-saveas (gcf,'Fig3_rc2.eps','epsc2');
+saveas (gcf,'Fig3_rc2_bk.eps','epsc2');
+
+figure;
+plot(kgrid, cfcn(:,TT), '-', 'linewidth', 3); hold('on');
+plot(kgrid, cfcn(:,9), '-.', 'linewidth', 3);
+plot(kgrid, cfcn(:,8), '--', 'linewidth', 3);
+plot(kgrid, cfcn(:,7), ':', 'linewidth', 3);
+plot(kgrid, cfcn(:,1), '-', 'linewidth', 3); hold('off');
+%title('消費関数', 'fontsize', 16);
+xlabel('資本保有量：k_{t}', 'Fontsize', 16);
+ylabel('消費：c_{t}', 'Fontsize', 16);
+legend('10期', '9期', '8期', '7期', '1期', 'Location', 'SouthEast');
+grid on;
+set(gca,'Fontsize',16);
+saveas (gcf,'Fig3_rc3.eps','epsc2');
 
 figure;
 plot(kgrid, cfcn(:,TT), '-', 'color', 'black', 'linewidth', 3); hold('on');
@@ -133,7 +175,20 @@ ylabel('消費：c_{t}', 'Fontsize', 16);
 legend('10期', '9期', '8期', '7期', '1期', 'Location', 'SouthEast');
 grid on;
 set(gca,'Fontsize',16);
-saveas (gcf,'Fig3_rc3.eps','epsc2');
+saveas (gcf,'Fig3_rc3_bk.eps','epsc2');
+
+figure;
+plot(kgrid, pfcn(:,9), '-', 'linewidth', 3); hold('on');
+plot(kgrid, p_true(:,9), '-.', 'linewidth', 3);
+plot(kgrid, pfcn(:,1), ':', 'linewidth', 3);
+plot(kgrid, p_true(:,1), '-', 'linewidth', 3); hold('off');
+%title('真の政策関数と近似解', 'fontsize', 16);
+xlabel('t期の資本保有量：k_{t}', 'Fontsize', 16);
+ylabel('t+1期の資本保有量：k_{t+1}', 'Fontsize', 16);
+legend('9期の近似解', '9期の解析的解', '1期の近似解', '1期の解析的解', 'Location', 'SouthEast');
+grid on;
+set(gca,'Fontsize',16);
+saveas (gcf,'Fig3_rc4.eps','epsc2');
 
 figure;
 plot(kgrid, pfcn(:,9), '-', 'color', 'black', 'linewidth', 3); hold('on');
@@ -146,6 +201,6 @@ ylabel('t+1期の資本保有量：k_{t+1}', 'Fontsize', 16);
 legend('9期の近似解', '9期の解析的解', '1期の近似解', '1期の解析的解', 'Location', 'SouthEast');
 grid on;
 set(gca,'Fontsize',16);
-saveas (gcf,'Fig3_rc4.eps','epsc2');
+saveas (gcf,'Fig3_rc4_bk.eps','epsc2');
 
 return

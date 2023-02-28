@@ -165,8 +165,8 @@ csvwrite("err_ddp.csv", err);
 %% 図を描く
 
 figure;
-plot(kgrid, vfcn, '-', 'color', 'black', 'linewidth', 3); hold('on');
-plot(kgrid, v_true, '--', 'color', 'black', 'linewidth', 3); hold('off');
+plot(kgrid, vfcn, '-', 'linewidth', 3); hold('on');
+plot(kgrid, v_true, '--', 'linewidth', 3); hold('off');
 %title('価値関数', 'fontsize', 16);
 xlabel('資本保有量：k', 'Fontsize', 16);
 ylabel('価値関数：V(k)', 'Fontsize', 16);
@@ -177,9 +177,9 @@ set(gca,'Fontsize', 16);
 saveas (gcf,'Fig3_dndp1.eps','epsc2');
 
 figure;
-plot(kgrid, pfcn, '-', 'color', 'black', 'linewidth', 3); hold('on');
-plot(kgrid, p_true, '--', 'color', 'black', 'linewidth', 3);
-plot(kgrid, kgrid, ':', 'color', 'black', 'linewidth', 2); hold('off');
+plot(kgrid, pfcn, '-', 'linewidth', 3); hold('on');
+plot(kgrid, p_true, '--', 'linewidth', 3);
+plot(kgrid, kgrid, ':', 'linewidth', 2); hold('off');
 %title('政策関数', 'fontsize', 16);
 xlabel('今期の資本保有量：k', 'Fontsize', 16);
 ylabel("次期の資本保有量：k'", 'Fontsize', 16);
@@ -193,7 +193,7 @@ saveas (gcf,'Fig3_dndp2.eps','epsc2');
 iter = linspace(1, l, l)';
 
 figure;
-plot(iter, v_conv, '-', 'color', 'black', 'linewidth', 3);
+plot(iter, v_conv, '-', 'linewidth', 3);
 %title('価値関数の収束', 'fontsize', 16);
 xlabel('計算回数', 'Fontsize', 16);
 ylabel('繰り返し計算誤差', 'Fontsize', 16);
@@ -202,13 +202,89 @@ set(gca,'Fontsize', 16);
 saveas (gcf,'Fig3_dndp3.eps','epsc2');
 
 figure;
-plot(iter, p_conv, '-', 'color', 'black', 'linewidth', 3);
+plot(iter, p_conv, '-', 'linewidth', 3);
 %title('政策関数の収束', 'fontsize', 16);
 xlabel('計算回数', 'Fontsize', 16);
 ylabel('繰り返し計算誤差', 'Fontsize', 16);
 grid on;
 set(gca,'Fontsize', 16);
 saveas (gcf,'Fig3_dndp4.eps','epsc2');
+
+figure;
+plot(iter, v_conv, '-', 'linewidth', 2); hold('on');
+plot(iter, p_conv, ':', 'linewidth', 2); hold('off');
+%title('価値関数・政策関数の収束', 'fontsize', 16);
+xlabel('計算回数', 'Fontsize', 16);
+ylabel('繰り返し計算誤差', 'Fontsize', 16);
+ylim([0,0.1]);
+legend('価値関数', '政策関数', 'Location', 'NorthEast');
+grid on;
+set(gca,'Fontsize', 16);
+saveas (gcf,'Fig3_dndp5.eps','epsc2');
+
+figure;
+plot(kgrid, val_tmp(:, 1), '-', 'linewidth', 3); hold('on');
+plot(kgrid, val_tmp(:, 2), '--', 'linewidth', 3);
+plot(kgrid, val_tmp(:, 3), '-.', 'linewidth', 3);
+plot(kgrid, val_tmp(:, 4), ':', 'linewidth', 3); hold('off');
+title('価値関数の収束', 'fontsize', 16);
+xlabel('資本保有量：k', 'Fontsize', 16);
+ylabel('価値関数：V(k)', 'Fontsize', 16);
+xlim([0,kmax]);
+legend('it=1', 'it=3', 'it=5', '収束', 'Location', 'East');
+grid on;
+set(gca,'Fontsize', 16);
+saveas (gcf,'Fig3_dndp6.eps','epsc2');
+
+
+
+%% 白黒の図
+
+figure;
+plot(kgrid, vfcn, '-', 'color', 'black', 'linewidth', 3); hold('on');
+plot(kgrid, v_true, '--', 'color', 'black', 'linewidth', 3); hold('off');
+%title('価値関数', 'fontsize', 16);
+xlabel('資本保有量：k', 'Fontsize', 16);
+ylabel('価値関数：V(k)', 'Fontsize', 16);
+xlim([0,kmax]);
+legend('近似解', '解析的解', 'Location', 'SouthEast');
+grid on;
+set(gca,'Fontsize', 16);
+saveas (gcf,'Fig3_dndp1_bk.eps','epsc2');
+
+figure;
+plot(kgrid, pfcn, '-', 'color', 'black', 'linewidth', 3); hold('on');
+plot(kgrid, p_true, '--', 'color', 'black', 'linewidth', 3);
+plot(kgrid, kgrid, ':', 'color', 'black', 'linewidth', 2); hold('off');
+%title('政策関数', 'fontsize', 16);
+xlabel('今期の資本保有量：k', 'Fontsize', 16);
+ylabel("次期の資本保有量：k'", 'Fontsize', 16);
+xlim([0,kmax]);
+legend('近似解', '解析的解', '45度線', 'Location', 'NorthWest');
+grid on;
+set(gca,'Fontsize', 16);
+saveas (gcf,'Fig3_dndp2_bk.eps','epsc2');
+
+[r, l] = size(v_conv);
+iter = linspace(1, l, l)';
+
+figure;
+plot(iter, v_conv, '-', 'color', 'black', 'linewidth', 3);
+%title('価値関数の収束', 'fontsize', 16);
+xlabel('計算回数', 'Fontsize', 16);
+ylabel('繰り返し計算誤差', 'Fontsize', 16);
+grid on;
+set(gca,'Fontsize', 16);
+saveas (gcf,'Fig3_dndp3_bk.eps','epsc2');
+
+figure;
+plot(iter, p_conv, '-', 'color', 'black', 'linewidth', 3);
+%title('政策関数の収束', 'fontsize', 16);
+xlabel('計算回数', 'Fontsize', 16);
+ylabel('繰り返し計算誤差', 'Fontsize', 16);
+grid on;
+set(gca,'Fontsize', 16);
+saveas (gcf,'Fig3_dndp4_bk.eps','epsc2');
 
 figure;
 plot(iter, v_conv, '-', 'color', 'black', 'linewidth', 2); hold('on');
@@ -220,7 +296,7 @@ ylim([0,0.1]);
 legend('価値関数', '政策関数', 'Location', 'NorthEast');
 grid on;
 set(gca,'Fontsize', 16);
-saveas (gcf,'Fig3_dndp5.eps','epsc2');
+saveas (gcf,'Fig3_dndp5_bk.eps','epsc2');
 
 figure;
 plot(kgrid, val_tmp(:, 1), '-', 'color', 'black', 'linewidth', 3); hold('on');
@@ -234,7 +310,7 @@ xlim([0,kmax]);
 legend('it=1', 'it=3', 'it=5', '収束', 'Location', 'East');
 grid on;
 set(gca,'Fontsize', 16);
-saveas (gcf,'Fig3_dndp6.eps','epsc2');
+saveas (gcf,'Fig3_dndp6_bk.eps','epsc2');
 
 return
 

@@ -18,13 +18,22 @@ c = -10.0;
 y = test_function(x, a, b, c);
 
 figure;
-plot(x, y, 'o', 'color', 'black', 'MarkerSize', 12, 'linewidth', 3);
+plot(x, y, 'o', 'MarkerSize', 12, 'linewidth', 3);
 xlabel('x', 'Fontsize', 16);
 ylabel('y = f(x)', 'Fontsize', 16);
 xlim([-15, 15]);
 grid on;
 set(gca,'Fontsize',16);
 saveas (gcf,'Fig3_data2.eps','epsc2');
+
+figure;
+plot(x, y, 'o', 'color', 'black', 'MarkerSize', 12, 'linewidth', 3);
+xlabel('x', 'Fontsize', 16);
+ylabel('y = f(x)', 'Fontsize', 16);
+xlim([-15, 15]);
+grid on;
+set(gca,'Fontsize',16);
+saveas (gcf,'Fig3_data2_bk.eps','epsc2');
 
 y_ln = zeros(1, 1001);
 y_sp = zeros(1, 1001);
@@ -35,8 +44,8 @@ for i = 1:1001
 end
 
 figure;
-plot(xx, y_ln, '-', 'color', 'black', 'linewidth', 3); hold('on');
-plot(xx, y_sp, '--', 'color', 'black', 'linewidth', 3); hold('off');
+plot(xx, y_ln, '-', 'linewidth', 3); hold('on');
+plot(xx, y_sp, '--', 'linewidth', 3); hold('off');
 xlabel('x', 'Fontsize', 16);
 ylabel('y = f(x)', 'Fontsize', 16);
 legend('線形近似', 'スプライン近似', 'Location', 'SouthEast');
@@ -45,8 +54,29 @@ grid on;
 set(gca,'Fontsize',16);
 saveas (gcf,'Fig3_interp2.eps','epsc2');
 
+figure;
+plot(xx, y_ln, '-', 'color', 'black', 'linewidth', 3); hold('on');
+plot(xx, y_sp, '--', 'color', 'black', 'linewidth', 3); hold('off');
+xlabel('x', 'Fontsize', 16);
+ylabel('y = f(x)', 'Fontsize', 16);
+legend('線形近似', 'スプライン近似', 'Location', 'SouthEast');
+xlim([-15, 15]);
+grid on;
+set(gca,'Fontsize',16);
+saveas (gcf,'Fig3_interp2_bk.eps','epsc2');
+
 
 %% DATA POINTS
+
+figure;
+plot(kgrid, vfcn(:, TT-1), 'o', 'MarkerSize', 12, 'linewidth', 3);
+xlabel('資本保有量：k', 'Fontsize', 16);
+ylabel('グリッド上の価値関数：V_{T-1}(k^{i})', 'Fontsize', 16);
+xlim([0, 1.5]);
+ylim([-3, 0]);
+grid on;
+set(gca,'Fontsize',16);
+saveas (gcf,'Fig3_data.eps','epsc2');
 
 figure;
 plot(kgrid, vfcn(:, TT-1), 'o', 'color', 'black', 'MarkerSize', 12, 'linewidth', 3);
@@ -56,7 +86,7 @@ xlim([0, 1.5]);
 ylim([-3, 0]);
 grid on;
 set(gca,'Fontsize',16);
-saveas (gcf,'Fig3_data.eps','epsc2');
+saveas (gcf,'Fig3_data_bk.eps','epsc2');
 
 %% MATLAB関数を使った内挿
 
@@ -74,8 +104,8 @@ for i = 1:nkk
 end
 
 figure;
-plot(kkgrid, v_ln, '-', 'color', 'black', 'linewidth', 3); hold('on');
-plot(kkgrid, v_cs, '--', 'color', 'black', 'linewidth', 3); hold('off');
+plot(kkgrid, v_ln, '-', 'linewidth', 3); hold('on');
+plot(kkgrid, v_cs, '--', 'linewidth', 3); hold('off');
 xlabel('資本保有量：k', 'Fontsize', 16);
 ylabel('価値関数：V_{T-1}(k)', 'Fontsize', 16);
 legend('線形近似', 'スプライン近似', 'Location', 'SouthEast');
@@ -86,7 +116,17 @@ set(gca,'Fontsize',16);
 saveas (gcf,'Fig3_interp.eps','epsc2');
 
 
-
+figure;
+plot(kkgrid, v_ln, '-', 'color', 'black', 'linewidth', 3); hold('on');
+plot(kkgrid, v_cs, '--', 'color', 'black', 'linewidth', 3); hold('off');
+xlabel('資本保有量：k', 'Fontsize', 16);
+ylabel('価値関数：V_{T-1}(k)', 'Fontsize', 16);
+legend('線形近似', 'スプライン近似', 'Location', 'SouthEast');
+xlim([0, 1.5]);
+ylim([-3, 0]);
+grid on;
+set(gca,'Fontsize',16);
+saveas (gcf,'Fig3_interp_bk.eps','epsc2');
 
 
 return;
