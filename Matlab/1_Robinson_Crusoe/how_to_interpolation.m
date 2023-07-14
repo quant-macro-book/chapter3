@@ -1,16 +1,16 @@
-%% main_robinson_crusoe.m‚ğ‘–‚ç‚¹‚½Œã‚Åg‚¤:
-% ‰¿’lŠÖ”‚Ì“à‘}‚ğƒvƒƒbƒg‚·‚é.
-% main_robinson_crusoe.m‚Åg‚Á‚½•Ï”‚ğg‚¤‚Ì‚ÅAæ‚ÉƒƒCƒ“ƒtƒ@ƒCƒ‹‚ğ‰ñ‚·•K—v‚ ‚è.
+%% main_robinson_crusoe.mã‚’èµ°ã‚‰ã›ãŸå¾Œã§ä½¿ã†:
+% ä¾¡å€¤é–¢æ•°ã®å†…æŒ¿ã‚’ãƒ—ãƒ­ãƒƒãƒˆã™ã‚‹.
+% main_robinson_crusoe.mã§ä½¿ã£ãŸå¤‰æ•°ã‚’ä½¿ã†ã®ã§ã€å…ˆã«ãƒ¡ã‚¤ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å›ã™å¿…è¦ã‚ã‚Š.
 
 close all;
 
 
-%% Jupyter Notebook‚Ì—á
+%% Jupyter Notebookã®ä¾‹
 
 x = linspace(-10, 10, 5);
 xx = linspace(-15, 15, 1001);
 
-% ƒpƒ‰ƒ[ƒ^‚Ìİ’è
+% ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®è¨­å®š
 a = 0.75;
 b = 2.0;
 c = -10.0;
@@ -48,7 +48,7 @@ plot(xx, y_ln, '-', 'linewidth', 3); hold('on');
 plot(xx, y_sp, '--', 'linewidth', 3); hold('off');
 xlabel('x', 'Fontsize', 16);
 ylabel('y = f(x)', 'Fontsize', 16);
-legend('üŒ`‹ß—', 'ƒXƒvƒ‰ƒCƒ“‹ß—', 'Location', 'SouthEast');
+legend('ç·šå½¢è¿‘ä¼¼', 'ã‚¹ãƒ—ãƒ©ã‚¤ãƒ³è¿‘ä¼¼', 'Location', 'SouthEast');
 xlim([-15, 15]);
 grid on;
 set(gca,'Fontsize',16);
@@ -59,7 +59,7 @@ plot(xx, y_ln, '-', 'color', 'black', 'linewidth', 3); hold('on');
 plot(xx, y_sp, '--', 'color', 'black', 'linewidth', 3); hold('off');
 xlabel('x', 'Fontsize', 16);
 ylabel('y = f(x)', 'Fontsize', 16);
-legend('üŒ`‹ß—', 'ƒXƒvƒ‰ƒCƒ“‹ß—', 'Location', 'SouthEast');
+legend('ç·šå½¢è¿‘ä¼¼', 'ã‚¹ãƒ—ãƒ©ã‚¤ãƒ³è¿‘ä¼¼', 'Location', 'SouthEast');
 xlim([-15, 15]);
 grid on;
 set(gca,'Fontsize',16);
@@ -70,8 +70,8 @@ saveas (gcf,'Fig3_interp2_bk.eps','epsc2');
 
 figure;
 plot(kgrid, vfcn(:, TT-1), 'o', 'MarkerSize', 12, 'linewidth', 3);
-xlabel('‘–{•Û—L—ÊFk', 'Fontsize', 16);
-ylabel('ƒOƒŠƒbƒhã‚Ì‰¿’lŠÖ”FV_{T-1}(k^{i})', 'Fontsize', 16);
+xlabel('è³‡æœ¬ä¿æœ‰é‡ï¼šk', 'Fontsize', 16);
+ylabel('ã‚°ãƒªãƒƒãƒ‰ä¸Šã®ä¾¡å€¤é–¢æ•°ï¼šV_{T-1}(k^{i})', 'Fontsize', 16);
 xlim([0, 1.5]);
 ylim([-3, 0]);
 grid on;
@@ -80,15 +80,15 @@ saveas (gcf,'Fig3_data.eps','epsc2');
 
 figure;
 plot(kgrid, vfcn(:, TT-1), 'o', 'color', 'black', 'MarkerSize', 12, 'linewidth', 3);
-xlabel('‘–{•Û—L—ÊFk', 'Fontsize', 16);
-ylabel('ƒOƒŠƒbƒhã‚Ì‰¿’lŠÖ”FV_{T-1}(k^{i})', 'Fontsize', 16);
+xlabel('è³‡æœ¬ä¿æœ‰é‡ï¼šk', 'Fontsize', 16);
+ylabel('ã‚°ãƒªãƒƒãƒ‰ä¸Šã®ä¾¡å€¤é–¢æ•°ï¼šV_{T-1}(k^{i})', 'Fontsize', 16);
 xlim([0, 1.5]);
 ylim([-3, 0]);
 grid on;
 set(gca,'Fontsize',16);
 saveas (gcf,'Fig3_data_bk.eps','epsc2');
 
-%% MATLABŠÖ”‚ğg‚Á‚½“à‘}
+%% MATLABé–¢æ•°ã‚’ä½¿ã£ãŸå†…æŒ¿
 
 nkk = 1001;
 kkmin = 0.0;
@@ -106,9 +106,9 @@ end
 figure;
 plot(kkgrid, v_ln, '-', 'linewidth', 3); hold('on');
 plot(kkgrid, v_cs, '--', 'linewidth', 3); hold('off');
-xlabel('‘–{•Û—L—ÊFk', 'Fontsize', 16);
-ylabel('‰¿’lŠÖ”FV_{T-1}(k)', 'Fontsize', 16);
-legend('üŒ`‹ß—', 'ƒXƒvƒ‰ƒCƒ“‹ß—', 'Location', 'SouthEast');
+xlabel('è³‡æœ¬ä¿æœ‰é‡ï¼šk', 'Fontsize', 16);
+ylabel('ä¾¡å€¤é–¢æ•°ï¼šV_{T-1}(k)', 'Fontsize', 16);
+legend('ç·šå½¢è¿‘ä¼¼', 'ã‚¹ãƒ—ãƒ©ã‚¤ãƒ³è¿‘ä¼¼', 'Location', 'SouthEast');
 xlim([0, 1.5]);
 ylim([-3, 0]);
 grid on;
@@ -119,9 +119,9 @@ saveas (gcf,'Fig3_interp.eps','epsc2');
 figure;
 plot(kkgrid, v_ln, '-', 'color', 'black', 'linewidth', 3); hold('on');
 plot(kkgrid, v_cs, '--', 'color', 'black', 'linewidth', 3); hold('off');
-xlabel('‘–{•Û—L—ÊFk', 'Fontsize', 16);
-ylabel('‰¿’lŠÖ”FV_{T-1}(k)', 'Fontsize', 16);
-legend('üŒ`‹ß—', 'ƒXƒvƒ‰ƒCƒ“‹ß—', 'Location', 'SouthEast');
+xlabel('è³‡æœ¬ä¿æœ‰é‡ï¼šk', 'Fontsize', 16);
+ylabel('ä¾¡å€¤é–¢æ•°ï¼šV_{T-1}(k)', 'Fontsize', 16);
+legend('ç·šå½¢è¿‘ä¼¼', 'ã‚¹ãƒ—ãƒ©ã‚¤ãƒ³è¿‘ä¼¼', 'Location', 'SouthEast');
 xlim([0, 1.5]);
 ylim([-3, 0]);
 grid on;
