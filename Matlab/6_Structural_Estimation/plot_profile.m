@@ -10,8 +10,8 @@ age = linspace(20,105,86);
 
 figure;
 plot(age, cprof, '-', 'linewidth', 3);
-xlabel('”N—î', 'Fontsize', 16);
-ylabel('Á”ï', 'Fontsize', 16);
+xlabel('å¹´é½¢', 'Fontsize', 16);
+ylabel('æ¶ˆè²»', 'Fontsize', 16);
 xlim([20,105]);
 ylim([0,1.5]);
 grid on;
@@ -20,8 +20,8 @@ saveas (gcf,'Fig3_cons_profile.eps','epsc2');
 
 figure;
 plot(age, aprof, '-', 'linewidth', 3);
-xlabel('”N—î', 'Fontsize', 16);
-ylabel('‘Y', 'Fontsize', 16);
+xlabel('å¹´é½¢', 'Fontsize', 16);
+ylabel('è³‡ç”£', 'Fontsize', 16);
 xlim([20,105]);
 ylim([0,15]);
 grid on;

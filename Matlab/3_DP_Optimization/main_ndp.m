@@ -1,6 +1,6 @@
-%% ƒƒCƒ“ƒtƒ@ƒCƒ‹:
-% ó‘Ô•Ï”‚Ì‚İ—£U‰»‚µ‚Ä‘€ì•Ï”‚Í˜A‘±“I‚É’l‚ğæ‚éê‡‚Ì“®“IŒv‰æ–@(parametric DP)‚Ì‰ğ–@.
-% ƒAƒ‹ƒSƒŠƒYƒ€‚ÌÚ×‚ÍAJohnson et al. (1993)‚ğQÆ
+%% ãƒ¡ã‚¤ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«:
+% çŠ¶æ…‹å¤‰æ•°ã®ã¿é›¢æ•£åŒ–ã—ã¦æ“ä½œå¤‰æ•°ã¯é€£ç¶šçš„ã«å€¤ã‚’å–ã‚‹å ´åˆã®å‹•çš„è¨ˆç”»æ³•(parametric DP)ã®è§£æ³•.
+% ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã®è©³ç´°ã¯ã€Johnson et al. (1993)ã‚’å‚ç…§
 
 clear;
 clear global;
@@ -9,43 +9,43 @@ format short;
 
 global beta gamma alpha delta capital vfcn kgrid
 
-%% *** ƒJƒŠƒuƒŒ[ƒVƒ‡ƒ“ ***
-beta  = 0.96; % Š„ˆøˆöq
-gamma = 1.0;  % ‘Š‘Î“IŠëŒ¯‰ñ”ğ“x(ˆÙ“_ŠÔ‚Ì‘ã‘Ö‚Ì’e—Í«‚Ì‹t”)
-alpha = 0.40; % ‘–{•ª”z—¦
-delta = 1.00; % ŒÅ’è‘–{Œ¸–Õ(0.08)
+%% *** ã‚«ãƒªãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ ***
+beta  = 0.96; % å‰²å¼•å› å­
+gamma = 1.0;  % ç›¸å¯¾çš„å±é™ºå›é¿åº¦(ç•°æ™‚ç‚¹é–“ã®ä»£æ›¿ã®å¼¾åŠ›æ€§ã®é€†æ•°)
+alpha = 0.40; % è³‡æœ¬åˆ†é…ç‡
+delta = 1.00; % å›ºå®šè³‡æœ¬æ¸›è€—(0.08)
 
-% *** —£U‰»—p‚Ìƒpƒ‰ƒ[ƒ^ ***
-nk   = 21;    % ƒOƒŠƒbƒh‚Ì”
-kmax = 0.5;   % ‘–{ƒOƒŠƒbƒh‚ÌÅ‘å’l
-%kmax = 10.0; % ‘–{ƒOƒŠƒbƒh‚ÌÅ‘å’l(ŒÅ’è‘–{Œ¸–Õ=0.08‚Ìê‡‚Ég—p)
-kmin = 0.05;  % ‘–{ƒOƒŠƒbƒh‚ÌÅ¬’l (0‚É‚·‚é‚Æ¶Y‚ªo—ˆ‚È‚­‚È‚é)
+% *** é›¢æ•£åŒ–ç”¨ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ ***
+nk   = 21;    % ã‚°ãƒªãƒƒãƒ‰ã®æ•°
+kmax = 0.5;   % è³‡æœ¬ã‚°ãƒªãƒƒãƒ‰ã®æœ€å¤§å€¤
+%kmax = 10.0; % è³‡æœ¬ã‚°ãƒªãƒƒãƒ‰ã®æœ€å¤§å€¤(å›ºå®šè³‡æœ¬æ¸›è€—=0.08ã®å ´åˆã«ä½¿ç”¨)
+kmin = 0.05;  % è³‡æœ¬ã‚°ãƒªãƒƒãƒ‰ã®æœ€å°å€¤ (0ã«ã™ã‚‹ã¨ç”Ÿç”£ãŒå‡ºæ¥ãªããªã‚‹)
 %========================
 
-% *** û‘©‚ÌŠî€ ***
-it = 1;          % ƒ‹[ƒvEƒJƒEƒ“ƒ^[
-maxit = 1000;    % ŒJ‚è•Ô‚µŒvZ‚ÌÅ‘å’l
-tol  = 1.0e-005; % ‹–—eŒë·(STEP 2)
-dif1 = 1.0;      % ‰¿’lŠÖ”‚ÌŒJ‚è•Ô‚µŒë·
-dif2 = 1.0;      % ­ôŠÖ”‚ÌŒJ‚è•Ô‚µŒë·
+% *** åæŸã®åŸºæº– ***
+it = 1;          % ãƒ«ãƒ¼ãƒ—ãƒ»ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
+maxit = 1000;    % ç¹°ã‚Šè¿”ã—è¨ˆç®—ã®æœ€å¤§å€¤
+tol  = 1.0e-005; % è¨±å®¹èª¤å·®(STEP 2)
+dif1 = 1.0;      % ä¾¡å€¤é–¢æ•°ã®ç¹°ã‚Šè¿”ã—èª¤å·®
+dif2 = 1.0;      % æ”¿ç­–é–¢æ•°ã®ç¹°ã‚Šè¿”ã—èª¤å·®
 count = 1;
 %=================
 
-%% ŒvZŠJn
+%% è¨ˆç®—é–‹å§‹
 
 tic
 
 disp('')
 disp('-+- Solve a neoclassical growth model -+-');
 
-%% STEP 1(a): ƒOƒŠƒbƒh¶¬
+%% STEP 1(a): ã‚°ãƒªãƒƒãƒ‰ç”Ÿæˆ
 
 kgrid = linspace(kmin, kmax, nk)';
 % kgrid = grid_exp1(kmin, kmax, nk)';
 % kgrid = grid_exp2(kmin, kmax, nk)';
 % kgrid = grid_exp3(kmin, kmax, nk)';
 
-%% STEP 1(b): ‰¿’lŠÖ”E­ôŠÖ”‚Ì‰Šú’l‚ğ“–‚Ä„—Ê
+%% STEP 1(b): ä¾¡å€¤é–¢æ•°ãƒ»æ”¿ç­–é–¢æ•°ã®åˆæœŸå€¤ã‚’å½“ã¦æ¨é‡
 
 pfcn0 = zeros(nk, 1);
 vfcn0 = CRRA(kgrid.^alpha + (1.-delta).*kgrid, gamma);
@@ -53,11 +53,11 @@ vfcn0 = CRRA(kgrid.^alpha + (1.-delta).*kgrid, gamma);
 pfcn1 = zeros(nk, 1);
 vfcn1 = zeros(nk, 1);
 
-% ‰¿’lŠÖ”E­ôŠÖ”‚ÌŒo˜H‚ğ‹L˜^(‚È‚­‚Ä‚à‰Â)
+% ä¾¡å€¤é–¢æ•°ãƒ»æ”¿ç­–é–¢æ•°ã®çµŒè·¯ã‚’è¨˜éŒ²(ãªãã¦ã‚‚å¯)
 vpath(:, 1) = vfcn0;
 ppath(:, 1) = pfcn0;
 
-%% STEP 4: ‰¿’lŠÖ”‚ğŒJ‚è•Ô‚µŒvZ
+%% STEP 4: ä¾¡å€¤é–¢æ•°ã‚’ç¹°ã‚Šè¿”ã—è¨ˆç®—
 
 while it < maxit && dif1 > tol
 
@@ -67,35 +67,35 @@ while it < maxit && dif1 > tol
 
     for i = 1:nk
 
-        % ƒOƒ[ƒoƒ‹•Ï”‚ğİ’è
-        % fminsearch‚Åg‚¤ŠÖ”(BellmanEq)‚ÉÅ“K‰»‚·‚é•Ï”"ˆÈŠO"‚Ì•Ï”‚ğ“n‚·(ƒOƒ[ƒoƒ‹•Ï”‚ğg‚í‚È‚¢•û–@‚à‚ ‚é‚Í‚¸)
+        % ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã‚’è¨­å®š
+        % fminsearchã§ä½¿ã†é–¢æ•°(BellmanEq)ã«æœ€é©åŒ–ã™ã‚‹å¤‰æ•°"ä»¥å¤–"ã®å¤‰æ•°ã‚’æ¸¡ã™(ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã‚’ä½¿ã‚ãªã„æ–¹æ³•ã‚‚ã‚ã‚‹ã¯ãš)
         capital = kgrid(i);
         vfcn = vfcn0;
 
-        % MATLAB‚ÌÅ“K‰»ŠÖ”(fminsearch)‚ğg‚Á‚ÄƒOƒŠƒbƒhã‚Å‰¿’lŠÖ”‚Æ­ôŠÖ”‚Ì’l‚ğ’T‚·
-        % ‰Šú’l‚Í0.01
+        % MATLABã®æœ€é©åŒ–é–¢æ•°(fminsearch)ã‚’ä½¿ã£ã¦ã‚°ãƒªãƒƒãƒ‰ä¸Šã§ä¾¡å€¤é–¢æ•°ã¨æ”¿ç­–é–¢æ•°ã®å€¤ã‚’æ¢ã™
+        % åˆæœŸå€¤ã¯0.01
         [pfcn1(i,1), vfcn1(i,1)] = fminsearch(@BellmanEq, 0.01);
 
     end
 
-    % fminsearch‚ÍÅ¬’l‚ğ’T‚·ŠÖ”‚È‚Ì‚Å•„†‚ğ”½“]‚³‚¹‚é
+    % fminsearchã¯æœ€å°å€¤ã‚’æ¢ã™é–¢æ•°ãªã®ã§ç¬¦å·ã‚’åè»¢ã•ã›ã‚‹
     vfcn1 = -1*vfcn1;
 
-    % ŒJ‚è•Ô‚µŒvZŒë·‚ğŠm”F
+    % ç¹°ã‚Šè¿”ã—è¨ˆç®—èª¤å·®ã‚’ç¢ºèª
     dif1 = max(abs((vfcn1-vfcn0)./vfcn0));
     dif2 = max(abs((pfcn1-pfcn0)./pfcn0));
 
-    % û‘©“r’†‚ÌŒJ‚è•Ô‚µŒvZŒë·‚ğ•Û‘¶
-    % “r’†Œo‰ß‚ğ}¦‚·‚é–Ú“I‚È‚Ì‚ÅA’Êí‚Í•s—v(‚Ş‚µ‚ë’x‚­‚È‚é‚Ì‚ÅÁ‚·‚×‚«)
-    % ŒvZ–ˆ‚És—ñ‚ÌƒTƒCƒY‚ª•Ï‚í‚Á‚Ä‚¢‚­‚Ì‚Í–]‚Ü‚µ‚­‚È‚¢‘‚«•û‚È‚Ì‚Å–{—ˆ‚Í”ğ‚¯‚é‚×‚«
+    % åæŸé€”ä¸­ã®ç¹°ã‚Šè¿”ã—è¨ˆç®—èª¤å·®ã‚’ä¿å­˜
+    % é€”ä¸­çµŒéã‚’å›³ç¤ºã™ã‚‹ç›®çš„ãªã®ã§ã€é€šå¸¸ã¯ä¸è¦(ã‚€ã—ã‚é…ããªã‚‹ã®ã§æ¶ˆã™ã¹ã)
+    % è¨ˆç®—æ¯ã«è¡Œåˆ—ã®ã‚µã‚¤ã‚ºãŒå¤‰ã‚ã£ã¦ã„ãã®ã¯æœ›ã¾ã—ããªã„æ›¸ãæ–¹ãªã®ã§æœ¬æ¥ã¯é¿ã‘ã‚‹ã¹ã
     dif(1, it) = dif1;
     dif(2, it) = dif2;
 
-    % ‰¿’lŠÖ”‚ÌŒo˜H‚ğ‹L˜^(‚È‚­‚Ä‚à–â‘è‚È‚µ)
+    % ä¾¡å€¤é–¢æ•°ã®çµŒè·¯ã‚’è¨˜éŒ²(ãªãã¦ã‚‚å•é¡Œãªã—)
     vpath(:, it) = vfcn0;
     ppath(:, it) = pfcn0;
 
-    % ‰¿’lŠÖ”E­ôŠÖ”‚ğƒAƒbƒvƒf[ƒg
+    % ä¾¡å€¤é–¢æ•°ãƒ»æ”¿ç­–é–¢æ•°ã‚’ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
     vfcn0 = vfcn1;
     pfcn0 = pfcn1;
 
@@ -103,10 +103,10 @@ while it < maxit && dif1 > tol
 
 end
 
-% ÅI“I‚È­ôŠÖ”‚ª“¾‚ç‚ê‚Ä‚©‚çÁ”ïŠÖ”‚ğŒvZ
+% æœ€çµ‚çš„ãªæ”¿ç­–é–¢æ•°ãŒå¾—ã‚‰ã‚Œã¦ã‹ã‚‰æ¶ˆè²»é–¢æ•°ã‚’è¨ˆç®—
 cfcn = kgrid.^alpha + (1.-delta).*kgrid - pfcn0(:,1);
 
-%% ŒvZŒ‹‰Ê‚ğƒRƒ}ƒ“ƒhƒEƒBƒ“ƒhƒE‚É•\¦
+%% è¨ˆç®—çµæœã‚’ã‚³ãƒãƒ³ãƒ‰ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«è¡¨ç¤º
 
 disp('-+- PARAMETER VALUES -+-');
 disp('');
@@ -117,14 +117,14 @@ disp('');
 
 toc
 
-%% ‰ğÍ“I‰ğ
+%% è§£æçš„è§£
 
 AA = (1.0-beta).^(-1) * (log(1.0-alpha*beta) + ((alpha*beta)/(1.0-alpha*beta))*log(alpha*beta));
 BB = alpha/(1.0-alpha*beta);
 v_true = AA + BB*log(kgrid);
 p_true = beta*alpha*(kgrid.^alpha);
 
-%% ƒIƒCƒ‰[•û’ö®‚©‚çŒë·‚ğ‘ª’è
+%% ã‚ªã‚¤ãƒ©ãƒ¼æ–¹ç¨‹å¼ã‹ã‚‰èª¤å·®ã‚’æ¸¬å®š
 
 cons = kgrid.^alpha + (1.-delta).*kgrid - pfcn0(:,1);
 LHS  = mu_CRRA(cons, gamma);
@@ -137,16 +137,16 @@ err  = RHS./LHS-1.0;
 
 err2 = csvread("err_ddp.csv");
 
-%% }‚ğ•`‚­
+%% å›³ã‚’æã
 
 figure;
 plot(kgrid, vfcn0, '-', 'linewidth', 3); hold('on');
 plot(kgrid, v_true, '--', 'linewidth', 3); hold('off');
-%title('‰¿’lŠÖ”', 'fontsize', 16);
-xlabel('‘–{•Û—L—ÊFk', 'Fontsize', 16);
-ylabel('‰¿’lŠÖ”FV(k)', 'Fontsize', 16);
+%title('ä¾¡å€¤é–¢æ•°', 'fontsize', 16);
+xlabel('è³‡æœ¬ä¿æœ‰é‡ï¼šk', 'Fontsize', 16);
+ylabel('ä¾¡å€¤é–¢æ•°ï¼šV(k)', 'Fontsize', 16);
 xlim([0, kmax]);
-legend('‹ß—‰ğ', '‰ğÍ“I‰ğ', 'Location', 'SouthEast');
+legend('è¿‘ä¼¼è§£', 'è§£æçš„è§£', 'Location', 'SouthEast');
 grid on;
 set(gca,'Fontsize', 16);
 saveas (gcf,'Fig3_pndp1.eps','epsc2');
@@ -155,20 +155,20 @@ figure;
 plot(kgrid, pfcn0, '-', 'linewidth', 3); hold('on');
 plot(kgrid, p_true, '--', 'linewidth', 3);
 plot(kgrid, kgrid, ':', 'linewidth', 2); hold('off');
-%title('­ôŠÖ”', 'fontsize', 16);
-xlabel('¡Šú‚Ì‘–{•Û—L—ÊFk', 'Fontsize', 16);
-ylabel("ŸŠú‚Ì‘–{•Û—L—ÊFk'", 'Fontsize', 16);
+%title('æ”¿ç­–é–¢æ•°', 'fontsize', 16);
+xlabel('ä»ŠæœŸã®è³‡æœ¬ä¿æœ‰é‡ï¼šk', 'Fontsize', 16);
+ylabel("æ¬¡æœŸã®è³‡æœ¬ä¿æœ‰é‡ï¼šk'", 'Fontsize', 16);
 xlim([0, kmax]);
-legend('‹ß—‰ğ', '‰ğÍ“I‰ğ', '45“xü', 'Location', 'NorthWest');
+legend('è¿‘ä¼¼è§£', 'è§£æçš„è§£', '45åº¦ç·š', 'Location', 'NorthWest');
 grid on;
 set(gca,'Fontsize', 16);
 saveas (gcf,'Fig3_pndp2.eps','epsc2');
 
 figure;
 plot(kgrid, cfcn(:,1), '-', 'linewidth', 3);
-%title('Á”ïŠÖ”', 'fontsize', 16);
-xlabel('‘–{•Û—L—ÊFk', 'Fontsize', 16);
-ylabel('Á”ïFc', 'Fontsize', 16);
+%title('æ¶ˆè²»é–¢æ•°', 'fontsize', 16);
+xlabel('è³‡æœ¬ä¿æœ‰é‡ï¼šk', 'Fontsize', 16);
+ylabel('æ¶ˆè²»ï¼šc', 'Fontsize', 16);
 grid on;
 set(gca,'Fontsize', 16);
 saveas (gcf,'Fig3_pndp3.eps','epsc2');
@@ -178,20 +178,20 @@ iter = linspace(1, it-1, it-1);
 figure;
 plot(iter, dif(1, :), '-', 'linewidth', 2); hold('on');
 plot(iter, dif(2, :), ':', 'linewidth', 2); hold('off');
-%title('‰¿’lŠÖ”E­ôŠÖ”‚Ìû‘©', 'fontsize', 16);
-xlabel('ŒvZ‰ñ”', 'Fontsize', 16);
-ylabel('ŒJ‚è•Ô‚µŒvZŒë·', 'Fontsize', 16);
+%title('ä¾¡å€¤é–¢æ•°ãƒ»æ”¿ç­–é–¢æ•°ã®åæŸ', 'fontsize', 16);
+xlabel('è¨ˆç®—å›æ•°', 'Fontsize', 16);
+ylabel('ç¹°ã‚Šè¿”ã—è¨ˆç®—èª¤å·®', 'Fontsize', 16);
 ylim([0,0.1]);
-legend('‰¿’lŠÖ”', '­ôŠÖ”', 'Location', 'NorthEast');
+legend('ä¾¡å€¤é–¢æ•°', 'æ”¿ç­–é–¢æ•°', 'Location', 'NorthEast');
 grid on;
 set(gca,'Fontsize', 16);
 saveas (gcf,'Fig3_pndp4.eps','epsc2');
 
 figure;
 plot(kgrid, err, '-', 'linewidth', 3);
-%title('ƒIƒCƒ‰[•û’ö®‚ÌŒë·', 'fontsize', 16);
-xlabel('‘–{•Û—L—ÊFk', 'Fontsize', 16);
-ylabel('ƒIƒCƒ‰[•û’ö®Œë·', 'Fontsize', 16);
+%title('ã‚ªã‚¤ãƒ©ãƒ¼æ–¹ç¨‹å¼ã®èª¤å·®', 'fontsize', 16);
+xlabel('è³‡æœ¬ä¿æœ‰é‡ï¼šk', 'Fontsize', 16);
+ylabel('ã‚ªã‚¤ãƒ©ãƒ¼æ–¹ç¨‹å¼èª¤å·®', 'Fontsize', 16);
 grid on;
 set(gca,'Fontsize', 16);
 saveas (gcf,'Fig3_pndp5.eps','epsc2');
@@ -199,25 +199,25 @@ saveas (gcf,'Fig3_pndp5.eps','epsc2');
 figure;
 plot(kgrid, err2, '-', 'linewidth', 3); hold('on');
 plot(kgrid, err, '--', 'linewidth', 3); hold('off');
-%title('ƒIƒCƒ‰[•û’ö®‚ÌŒë·', 'fontsize', 16);
-xlabel('‘–{•Û—L—ÊFk', 'Fontsize', 16);
-ylabel('ƒIƒCƒ‰[•û’ö®Œë·', 'Fontsize', 16);
+%title('ã‚ªã‚¤ãƒ©ãƒ¼æ–¹ç¨‹å¼ã®èª¤å·®', 'fontsize', 16);
+xlabel('è³‡æœ¬ä¿æœ‰é‡ï¼šk', 'Fontsize', 16);
+ylabel('ã‚ªã‚¤ãƒ©ãƒ¼æ–¹ç¨‹å¼èª¤å·®', 'Fontsize', 16);
 ylim([-15e-004,5e-004]);
-legend('‘€ì•Ï”F—£U', '‘€ì•Ï”F˜A‘±', 'Location', 'SouthEast');
+legend('æ“ä½œå¤‰æ•°ï¼šé›¢æ•£', 'æ“ä½œå¤‰æ•°ï¼šé€£ç¶š', 'Location', 'SouthEast');
 grid on;
 set(gca,'Fontsize', 16);
 saveas (gcf,'Fig3_pndp6.eps','epsc2');
 
-%% ”’•‚Ì}
+%% ç™½é»’ã®å›³
 
 figure;
 plot(kgrid, vfcn0, '-', 'color', 'black', 'linewidth', 3); hold('on');
 plot(kgrid, v_true, '--', 'color', 'black', 'linewidth', 3); hold('off');
-%title('‰¿’lŠÖ”', 'fontsize', 16);
-xlabel('‘–{•Û—L—ÊFk', 'Fontsize', 16);
-ylabel('‰¿’lŠÖ”FV(k)', 'Fontsize', 16);
+%title('ä¾¡å€¤é–¢æ•°', 'fontsize', 16);
+xlabel('è³‡æœ¬ä¿æœ‰é‡ï¼šk', 'Fontsize', 16);
+ylabel('ä¾¡å€¤é–¢æ•°ï¼šV(k)', 'Fontsize', 16);
 xlim([0, kmax]);
-legend('‹ß—‰ğ', '‰ğÍ“I‰ğ', 'Location', 'SouthEast');
+legend('è¿‘ä¼¼è§£', 'è§£æçš„è§£', 'Location', 'SouthEast');
 grid on;
 set(gca,'Fontsize', 16);
 saveas (gcf,'Fig3_pndp1_bk.eps','epsc2');
@@ -226,20 +226,20 @@ figure;
 plot(kgrid, pfcn0, '-', 'color', 'black', 'linewidth', 3); hold('on');
 plot(kgrid, p_true, '--', 'color', 'black', 'linewidth', 3);
 plot(kgrid, kgrid, ':', 'color', 'black', 'linewidth', 2); hold('off');
-%title('­ôŠÖ”', 'fontsize', 16);
-xlabel('¡Šú‚Ì‘–{•Û—L—ÊFk', 'Fontsize', 16);
-ylabel("ŸŠú‚Ì‘–{•Û—L—ÊFk'", 'Fontsize', 16);
+%title('æ”¿ç­–é–¢æ•°', 'fontsize', 16);
+xlabel('ä»ŠæœŸã®è³‡æœ¬ä¿æœ‰é‡ï¼šk', 'Fontsize', 16);
+ylabel("æ¬¡æœŸã®è³‡æœ¬ä¿æœ‰é‡ï¼šk'", 'Fontsize', 16);
 xlim([0, kmax]);
-legend('‹ß—‰ğ', '‰ğÍ“I‰ğ', '45“xü', 'Location', 'NorthWest');
+legend('è¿‘ä¼¼è§£', 'è§£æçš„è§£', '45åº¦ç·š', 'Location', 'NorthWest');
 grid on;
 set(gca,'Fontsize', 16);
 saveas (gcf,'Fig3_pndp2_bk.eps','epsc2');
 
 figure;
 plot(kgrid, cfcn(:,1), '-', 'color', 'black', 'linewidth', 3);
-%title('Á”ïŠÖ”', 'fontsize', 16);
-xlabel('‘–{•Û—L—ÊFk', 'Fontsize', 16);
-ylabel('Á”ïFc', 'Fontsize', 16);
+%title('æ¶ˆè²»é–¢æ•°', 'fontsize', 16);
+xlabel('è³‡æœ¬ä¿æœ‰é‡ï¼šk', 'Fontsize', 16);
+ylabel('æ¶ˆè²»ï¼šc', 'Fontsize', 16);
 grid on;
 set(gca,'Fontsize', 16);
 saveas (gcf,'Fig3_pndp3_bk.eps','epsc2');
@@ -249,20 +249,20 @@ iter = linspace(1, it-1, it-1);
 figure;
 plot(iter, dif(1, :), '-', 'color', 'black', 'linewidth', 2); hold('on');
 plot(iter, dif(2, :), ':', 'color', 'black', 'linewidth', 2); hold('off');
-%title('‰¿’lŠÖ”E­ôŠÖ”‚Ìû‘©', 'fontsize', 16);
-xlabel('ŒvZ‰ñ”', 'Fontsize', 16);
-ylabel('ŒJ‚è•Ô‚µŒvZŒë·', 'Fontsize', 16);
+%title('ä¾¡å€¤é–¢æ•°ãƒ»æ”¿ç­–é–¢æ•°ã®åæŸ', 'fontsize', 16);
+xlabel('è¨ˆç®—å›æ•°', 'Fontsize', 16);
+ylabel('ç¹°ã‚Šè¿”ã—è¨ˆç®—èª¤å·®', 'Fontsize', 16);
 ylim([0,0.1]);
-legend('‰¿’lŠÖ”', '­ôŠÖ”', 'Location', 'NorthEast');
+legend('ä¾¡å€¤é–¢æ•°', 'æ”¿ç­–é–¢æ•°', 'Location', 'NorthEast');
 grid on;
 set(gca,'Fontsize', 16);
 saveas (gcf,'Fig3_pndp4_bk.eps','epsc2');
 
 figure;
 plot(kgrid, err, '-', 'color', 'black', 'linewidth', 3);
-%title('ƒIƒCƒ‰[•û’ö®‚ÌŒë·', 'fontsize', 16);
-xlabel('‘–{•Û—L—ÊFk', 'Fontsize', 16);
-ylabel('ƒIƒCƒ‰[•û’ö®Œë·', 'Fontsize', 16);
+%title('ã‚ªã‚¤ãƒ©ãƒ¼æ–¹ç¨‹å¼ã®èª¤å·®', 'fontsize', 16);
+xlabel('è³‡æœ¬ä¿æœ‰é‡ï¼šk', 'Fontsize', 16);
+ylabel('ã‚ªã‚¤ãƒ©ãƒ¼æ–¹ç¨‹å¼èª¤å·®', 'Fontsize', 16);
 grid on;
 set(gca,'Fontsize', 16);
 saveas (gcf,'Fig3_pndp5_bk.eps','epsc2');
@@ -270,11 +270,11 @@ saveas (gcf,'Fig3_pndp5_bk.eps','epsc2');
 figure;
 plot(kgrid, err2, '-', 'color', 'black', 'linewidth', 3); hold('on');
 plot(kgrid, err, '--', 'color', 'black', 'linewidth', 3); hold('off');
-%title('ƒIƒCƒ‰[•û’ö®‚ÌŒë·', 'fontsize', 16);
-xlabel('‘–{•Û—L—ÊFk', 'Fontsize', 16);
-ylabel('ƒIƒCƒ‰[•û’ö®Œë·', 'Fontsize', 16);
+%title('ã‚ªã‚¤ãƒ©ãƒ¼æ–¹ç¨‹å¼ã®èª¤å·®', 'fontsize', 16);
+xlabel('è³‡æœ¬ä¿æœ‰é‡ï¼šk', 'Fontsize', 16);
+ylabel('ã‚ªã‚¤ãƒ©ãƒ¼æ–¹ç¨‹å¼èª¤å·®', 'Fontsize', 16);
 ylim([-15e-004,5e-004]);
-legend('‘€ì•Ï”F—£U', '‘€ì•Ï”F˜A‘±', 'Location', 'SouthEast');
+legend('æ“ä½œå¤‰æ•°ï¼šé›¢æ•£', 'æ“ä½œå¤‰æ•°ï¼šé€£ç¶š', 'Location', 'SouthEast');
 grid on;
 set(gca,'Fontsize', 16);
 saveas (gcf,'Fig3_pndp6_bk.eps','epsc2');

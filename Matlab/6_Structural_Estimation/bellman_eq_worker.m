@@ -2,35 +2,35 @@ function  value = bellman_eq_worker(aprime)
 % Function bellman_eq_worker
 %  [value] = bellman_eq_worker(kprime)
 %
-% –Ú“I:
-% a'‚ğˆê‚Â—^‚¦‚½‚Æ‚«‚Ìƒxƒ‹ƒ}ƒ“•û’ö®‚ğ•Ô‚·ŠÖ”.
-% main_lifecycle.m‚©‚çŒÄ‚Ño‚µ‚Äg‚¤.
+% ç›®çš„:
+% a'ã‚’ä¸€ã¤ä¸ãˆãŸã¨ãã®ãƒ™ãƒ«ãƒãƒ³æ–¹ç¨‹å¼ã‚’è¿”ã™é–¢æ•°.
+% main_lifecycle.mã‹ã‚‰å‘¼ã³å‡ºã—ã¦ä½¿ã†.
 %
-% ƒOƒ[ƒoƒ‹•Ï”: beta gamma alpha delta A tran capital vfcn kgrid
+% ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°: beta gamma alpha delta A tran capital vfcn kgrid
 
 global beta gamma asset ss r tran eta endow surv ret_age age zt na nz vfcn_yng vfcn_old agrid
 
-%% ƒxƒ‹ƒ}ƒ“•û’ö®
+%% ãƒ™ãƒ«ãƒãƒ³æ–¹ç¨‹å¼
 
-% —\Z§–ñ‚ÆÁ”ï
+% äºˆç®—åˆ¶ç´„ã¨æ¶ˆè²»
 wealth = (1+r)*asset + eta(age)*endow(zt);
 cons = wealth - aprime;
 
-% Á”ï‚ª•‰’l‚Ìê‡Aƒyƒiƒ‹ƒeƒB‚ğ—^‚¦‚Ä‚»‚Ì’l‚ª‘I‚Î‚ê‚È‚¢‚æ‚¤‚É‚·‚é
+% æ¶ˆè²»ãŒè² å€¤ã®å ´åˆã€ãƒšãƒŠãƒ«ãƒ†ã‚£ã‚’ä¸ãˆã¦ãã®å€¤ãŒé¸ã°ã‚Œãªã„ã‚ˆã†ã«ã™ã‚‹
 if cons > 0.0
     util = CRRA(cons, gamma);
 else
     util = -10000.0;
 end
 
-% ŸŠú‚ÌŠú‘ÒŒø—p
+% æ¬¡æœŸã®æœŸå¾…åŠ¹ç”¨
 if age == ret_age
-    % ˆø‘Ş’¼‘O‚Å‚ ‚ê‚ÎŸŠú‚É‚Íz‚Ì•sŠmÀ«‚Í‘¶İ‚µ‚È‚¢‚Ì‚ÅŠú‘Ò’lŒvZ‚Í•s—v
+    % å¼•é€€ç›´å‰ã§ã‚ã‚Œã°æ¬¡æœŸã«ã¯zã®ä¸ç¢ºå®Ÿæ€§ã¯å­˜åœ¨ã—ãªã„ã®ã§æœŸå¾…å€¤è¨ˆç®—ã¯ä¸è¦
     vnext = interp1(agrid, vfcn_old(:, 1), aprime, 'spline');
     vnext = surv(age)*beta*vnext;
 else
     vnext_z = zeros(nz, 1);
-    % ‚»‚ê‚¼‚ê‚ÌŸŠú‚Ìz‚É‘Î‰‚µ‚½value‚ğŒvZ
+    % ãã‚Œãã‚Œã®æ¬¡æœŸã®zã«å¯¾å¿œã—ãŸvalueã‚’è¨ˆç®—
     for zz = 1:nz
         if aprime <= agrid(na)
             vnext_z(zz) = interp1(agrid, vfcn_yng(:, zz, age+1), aprime, 'spline');
@@ -38,19 +38,19 @@ else
             vnext_z(zz) = interp1(agrid, vfcn_yng(:, zz, age+1), aprime, 'linear');
         end
     end
-    % ‘JˆÚŠm—¦s—ñ‚ÅŠú‘Ò’l‚ğŒvZ
+    % é·ç§»ç¢ºç‡è¡Œåˆ—ã§æœŸå¾…å€¤ã‚’è¨ˆç®—
     vnext = surv(age)*beta*dot(tran(zt, :), vnext_z);
 end
 
-% ‰¿’lŠÖ”
+% ä¾¡å€¤é–¢æ•°
 value = util + vnext;
 
-%% ƒgƒŠƒbƒN(1): k'‚Í³‚Ì’l‚µ‚©æ‚ç‚È‚¢‚Ì‚ÅAƒyƒiƒ‹ƒeƒB‚ğ—^‚¦‚Ä‚»‚Ì’l‚ª‘I‚Î‚ê‚È‚¢‚æ‚¤‚É‚·‚é
+%% ãƒˆãƒªãƒƒã‚¯(1): k'ã¯æ­£ã®å€¤ã—ã‹å–ã‚‰ãªã„ã®ã§ã€ãƒšãƒŠãƒ«ãƒ†ã‚£ã‚’ä¸ãˆã¦ãã®å€¤ãŒé¸ã°ã‚Œãªã„ã‚ˆã†ã«ã™ã‚‹
 if aprime < 0
     value = -1000000.0;
 end
 
-%% ƒgƒŠƒbƒN(2): "Å¬‰»"‚ğ‚·‚é‚Ì‚Å•„†‚ğ”½“]
+%% ãƒˆãƒªãƒƒã‚¯(2): "æœ€å°åŒ–"ã‚’ã™ã‚‹ã®ã§ç¬¦å·ã‚’åè»¢
 value = -1.0 * value;
  
 return

@@ -2,39 +2,39 @@ function  value = bellman_eq_retired(aprime)
 % Function bellman_eq_retired
 %  [value] = bellman_eq_retired(kprime)
 %
-% –Ú“I:
-% a'‚ğˆê‚Â—^‚¦‚½‚Æ‚«‚Ìƒxƒ‹ƒ}ƒ“•û’ö®‚ğ•Ô‚·ŠÖ”.
-% main_lifecycle.m‚©‚çŒÄ‚Ño‚µ‚Äg‚¤.
+% ç›®çš„:
+% a'ã‚’ä¸€ã¤ä¸ãˆãŸã¨ãã®ãƒ™ãƒ«ãƒãƒ³æ–¹ç¨‹å¼ã‚’è¿”ã™é–¢æ•°.
+% main_lifecycle.mã‹ã‚‰å‘¼ã³å‡ºã—ã¦ä½¿ã†.
 %
-% ƒOƒ[ƒoƒ‹•Ï”: beta gamma alpha delta A tran capital vfcn kgrid
+% ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°: beta gamma alpha delta A tran capital vfcn kgrid
 
 global beta gamma asset ss r surv ret_age age vfcn_old agrid
 
-%% ƒxƒ‹ƒ}ƒ“•û’ö®
+%% ãƒ™ãƒ«ãƒãƒ³æ–¹ç¨‹å¼
 
-% —\Z§–ñ‚ÆÁ”ï
+% äºˆç®—åˆ¶ç´„ã¨æ¶ˆè²»
 wealth = (1+r)*asset + ss;
 cons = wealth - aprime;
 
-% Á”ï‚ª•‰’l‚Ìê‡Aƒyƒiƒ‹ƒeƒB‚ğ—^‚¦‚Ä‚»‚Ì’l‚ª‘I‚Î‚ê‚È‚¢‚æ‚¤‚É‚·‚é
+% æ¶ˆè²»ãŒè² å€¤ã®å ´åˆã€ãƒšãƒŠãƒ«ãƒ†ã‚£ã‚’ä¸ãˆã¦ãã®å€¤ãŒé¸ã°ã‚Œãªã„ã‚ˆã†ã«ã™ã‚‹
 if cons > 0.0
     util = CRRA(cons, gamma);
 else
     util = -10000.0;
 end
 
-% ŸŠú‚Ì‰¿’lŠÖ”‚ğƒXƒvƒ‰ƒCƒ“•âŠÔ
+% æ¬¡æœŸã®ä¾¡å€¤é–¢æ•°ã‚’ã‚¹ãƒ—ãƒ©ã‚¤ãƒ³è£œé–“
 vnext = interp1(agrid, vfcn_old(:, age-ret_age+1), aprime, 'spline');
 
-% ‰¿’lŠÖ”
+% ä¾¡å€¤é–¢æ•°
 value = util + surv(age)*beta*vnext;
 
-%% ƒgƒŠƒbƒN(1): k'‚Í³‚Ì’l‚µ‚©æ‚ç‚È‚¢‚Ì‚ÅAƒyƒiƒ‹ƒeƒB‚ğ—^‚¦‚Ä‚»‚Ì’l‚ª‘I‚Î‚ê‚È‚¢‚æ‚¤‚É‚·‚é
+%% ãƒˆãƒªãƒƒã‚¯(1): k'ã¯æ­£ã®å€¤ã—ã‹å–ã‚‰ãªã„ã®ã§ã€ãƒšãƒŠãƒ«ãƒ†ã‚£ã‚’ä¸ãˆã¦ãã®å€¤ãŒé¸ã°ã‚Œãªã„ã‚ˆã†ã«ã™ã‚‹
 if aprime < 0
     value = -1000000.0;
 end
 
-%% ƒgƒŠƒbƒN(2): "Å¬‰»"‚ğ‚·‚é‚Ì‚Å•„†‚ğ”½“]
+%% ãƒˆãƒªãƒƒã‚¯(2): "æœ€å°åŒ–"ã‚’ã™ã‚‹ã®ã§ç¬¦å·ã‚’åè»¢
 value = -1.0 * value;
  
 return

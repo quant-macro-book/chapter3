@@ -1,6 +1,6 @@
-%% ƒƒCƒ“ƒtƒ@ƒCƒ‹:
-% ó‘Ô•Ï”‚Ì‚İ—£U‰»‚µ‚Ä‘€ì•Ï”‚Í˜A‘±“I‚É’l‚ğæ‚éê‡‚Ì“®“IŒv‰æ–@(parametric DP)‚Ì‰ğ–@.
-% ƒAƒ‹ƒSƒŠƒYƒ€‚ÌÚ×‚ÍAJohnson et al. (1993)‚ğQÆ
+%% ãƒ¡ã‚¤ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«:
+% çŠ¶æ…‹å¤‰æ•°ã®ã¿é›¢æ•£åŒ–ã—ã¦æ“ä½œå¤‰æ•°ã¯é€£ç¶šçš„ã«å€¤ã‚’å–ã‚‹å ´åˆã®å‹•çš„è¨ˆç”»æ³•(parametric DP)ã®è§£æ³•.
+% ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã®è©³ç´°ã¯ã€Johnson et al. (1993)ã‚’å‚ç…§
 
 clear;
 clear global;
@@ -9,11 +9,11 @@ format short;
 
 global beta gamma asset ss r tran eta endow surv ret_age age zt na nz vfcn_yng vfcn_old agrid
 
-%% *** ƒJƒŠƒuƒŒ[ƒVƒ‡ƒ“ ***
-beta  = 0.98; % Š„ˆøˆöq
-gamma = 1.0;  % ‘Š‘Î“IŠëŒ¯‰ñ”ğ“x(ˆÙ“_ŠÔ‚Ì‘ã‘Ö‚Ì’e—Í«‚Ì‹t”)
-r     = 0.04; % —˜q—¦
-ss    = 0.5;  % Š“¾‘ã‘Ö—¦‚ÅƒJƒŠƒuƒŒ[ƒg
+%% *** ã‚«ãƒªãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ ***
+beta  = 0.98; % å‰²å¼•å› å­
+gamma = 1.0;  % ç›¸å¯¾çš„å±é™ºå›é¿åº¦(ç•°æ™‚ç‚¹é–“ã®ä»£æ›¿ã®å¼¾åŠ›æ€§ã®é€†æ•°)
+r     = 0.04; % åˆ©å­ç‡
+ss    = 0.5;  % æ‰€å¾—ä»£æ›¿ç‡ã§ã‚«ãƒªãƒ–ãƒ¬ãƒ¼ãƒˆ
 
 eta = readmatrix("earnings_profiles.csv");
 surv = readmatrix("surv.csv");
@@ -22,27 +22,27 @@ nz = 3;
 endow = [0.8027, 1.0, 1.2457];
 tran = [0.7451 0.2528 0.0021; 0.1360 0.7281 0.1360; 0.0021 0.2528 0.7451];
 
-max_age = 86; %20Î‚©‚ç105Î‚Ü‚Å
-ret_age = 45; %20Î‚©‚ç64Î‚Ü‚Å
+max_age = 86; %20æ­³ã‹ã‚‰105æ­³ã¾ã§
+ret_age = 45; %20æ­³ã‹ã‚‰64æ­³ã¾ã§
 
-% *** —£U‰»—p‚Ìƒpƒ‰ƒ[ƒ^ ***
-na   = 101;  % ƒOƒŠƒbƒh‚Ì”
-amax = 40.0; % ‘YƒOƒŠƒbƒh‚ÌÅ‘å’l
-amin = 0.0;  % ‘YƒOƒŠƒbƒh‚ÌÅ¬’l 
+% *** é›¢æ•£åŒ–ç”¨ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ ***
+na   = 101;  % ã‚°ãƒªãƒƒãƒ‰ã®æ•°
+amax = 40.0; % è³‡ç”£ã‚°ãƒªãƒƒãƒ‰ã®æœ€å¤§å€¤
+amin = 0.0;  % è³‡ç”£ã‚°ãƒªãƒƒãƒ‰ã®æœ€å°å€¤ 
 %========================
 
-%% ŒvZŠJn
+%% è¨ˆç®—é–‹å§‹
 
 tic
 
 disp('')
 disp('-+- Solve a life cycle model -+-');
 
-%% STEP 1(a): ƒOƒŠƒbƒh¶¬
+%% STEP 1(a): ã‚°ãƒªãƒƒãƒ‰ç”Ÿæˆ
 
 agrid = linspace(amin, amax, na)';
 
-%% STEP 1(b): ‰¿’lŠÖ”E­ôŠÖ”‚ğ“ü‚ê‚é‚½‚ß‚Ì•Ï”
+%% STEP 1(b): ä¾¡å€¤é–¢æ•°ãƒ»æ”¿ç­–é–¢æ•°ã‚’å…¥ã‚Œã‚‹ãŸã‚ã®å¤‰æ•°
 
 pfcn_yng = zeros(na, nz, ret_age);
 vfcn_yng = zeros(na, nz, ret_age);
@@ -50,9 +50,9 @@ vfcn_yng = zeros(na, nz, ret_age);
 pfcn_old = zeros(na, max_age - ret_age);
 vfcn_old = zeros(na, max_age - ret_age);
 
-%% STEP 4: ‰¿’lŠÖ”‚ğŒã‚ëŒü‚«‚ÉŒvZ
+%% STEP 4: ä¾¡å€¤é–¢æ•°ã‚’å¾Œã‚å‘ãã«è¨ˆç®—
 
-% ÅIŠú‚Í‚·‚×‚Ä‚Ì‘Œ¹‚ğg‚¢Ø‚é
+% æœ€çµ‚æœŸã¯ã™ã¹ã¦ã®è³‡æºã‚’ä½¿ã„åˆ‡ã‚‹
 for i = 1:na
     vfcn_old(i, max_age-ret_age) = CRRA((1+r)*agrid(i) + ss, gamma);
     pfcn_old(i, max_age-ret_age) = 0.0;
@@ -60,46 +60,46 @@ end
 
 figure;
 plot(agrid, vfcn_old(:, max_age-ret_age), '-', 'linewidth', 3);
-xlabel('’™’~', 'Fontsize', 16);
-ylabel('‰¿’lŠÖ”', 'Fontsize', 16);
+xlabel('è²¯è“„', 'Fontsize', 16);
+ylabel('ä¾¡å€¤é–¢æ•°', 'Fontsize', 16);
 grid on;
 
-% ˆø‘ŞŒã‚Ì‰¿’lŠÖ”
+% å¼•é€€å¾Œã®ä¾¡å€¤é–¢æ•°
 for t = max_age-1:-1:ret_age+1
 
     fprintf('age index: %i \n', t);
 
     for i = 1:na
     
-        % ƒOƒ[ƒoƒ‹•Ï”‚ğİ’è
-        % fminsearch‚Åg‚¤ŠÖ”(BellmanEq)‚ÉÅ“K‰»‚·‚é•Ï”"ˆÈŠO"‚Ì•Ï”‚ğ“n‚·(ƒOƒ[ƒoƒ‹•Ï”‚ğg‚í‚È‚¢•û–@‚à‚ ‚é‚Í‚¸)
+        % ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã‚’è¨­å®š
+        % fminsearchã§ä½¿ã†é–¢æ•°(BellmanEq)ã«æœ€é©åŒ–ã™ã‚‹å¤‰æ•°"ä»¥å¤–"ã®å¤‰æ•°ã‚’æ¸¡ã™(ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã‚’ä½¿ã‚ãªã„æ–¹æ³•ã‚‚ã‚ã‚‹ã¯ãš)
         asset = agrid(i);
         age = t;
     
-        % MATLAB‚ÌÅ“K‰»ŠÖ”(fminsearch)‚ğg‚Á‚ÄƒOƒŠƒbƒhã‚Å‰¿’lŠÖ”‚Æ­ôŠÖ”‚Ì’l‚ğ’T‚·
-        % ‰Šú’l‚Í0.01
+        % MATLABã®æœ€é©åŒ–é–¢æ•°(fminsearch)ã‚’ä½¿ã£ã¦ã‚°ãƒªãƒƒãƒ‰ä¸Šã§ä¾¡å€¤é–¢æ•°ã¨æ”¿ç­–é–¢æ•°ã®å€¤ã‚’æ¢ã™
+        % åˆæœŸå€¤ã¯0.01
         [pfcn_old(i, age-ret_age), vfcn_old(i, age-ret_age)] = fminsearch(@bellman_eq_retired, 0.01);
     
     end
 
-    % fminsearch‚ÍÅ¬’l‚ğ’T‚·ŠÖ”‚È‚Ì‚Å•„†‚ğ”½“]‚³‚¹‚é
+    % fminsearchã¯æœ€å°å€¤ã‚’æ¢ã™é–¢æ•°ãªã®ã§ç¬¦å·ã‚’åè»¢ã•ã›ã‚‹
     vfcn_old(:, age-ret_age) = -1*vfcn_old(:, age-ret_age);
 
 end
 
 figure;
 plot(agrid, vfcn_old(:, 1), '-', 'linewidth', 3);
-xlabel('’™’~', 'Fontsize', 16);
-ylabel('‰¿’lŠÖ”', 'Fontsize', 16);
+xlabel('è²¯è“„', 'Fontsize', 16);
+ylabel('ä¾¡å€¤é–¢æ•°', 'Fontsize', 16);
 grid on;
 
 figure;
 plot(agrid, pfcn_old(:, 1), '-', 'linewidth', 3);
-xlabel('’™’~', 'Fontsize', 16);
-ylabel('­ôŠÖ”', 'Fontsize', 16);
+xlabel('è²¯è“„', 'Fontsize', 16);
+ylabel('æ”¿ç­–é–¢æ•°', 'Fontsize', 16);
 grid on;
 
-% ˜J“­Ò‚Ì‰¿’lŠÖ”
+% åŠ´åƒè€…ã®ä¾¡å€¤é–¢æ•°
 for t = ret_age:-1:1
 
     fprintf('age index: %i \n', t);
@@ -107,34 +107,34 @@ for t = ret_age:-1:1
     for z = 1:nz
         for i = 1:na
         
-            % ƒOƒ[ƒoƒ‹•Ï”‚ğİ’è
-            % fminsearch‚Åg‚¤ŠÖ”(BellmanEq)‚ÉÅ“K‰»‚·‚é•Ï”"ˆÈŠO"‚Ì•Ï”‚ğ“n‚·(ƒOƒ[ƒoƒ‹•Ï”‚ğg‚í‚È‚¢•û–@‚à‚ ‚é‚Í‚¸)
+            % ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã‚’è¨­å®š
+            % fminsearchã§ä½¿ã†é–¢æ•°(BellmanEq)ã«æœ€é©åŒ–ã™ã‚‹å¤‰æ•°"ä»¥å¤–"ã®å¤‰æ•°ã‚’æ¸¡ã™(ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã‚’ä½¿ã‚ãªã„æ–¹æ³•ã‚‚ã‚ã‚‹ã¯ãš)
             asset = agrid(i);
             age = t;
             zt  = z;
 
-            % MATLAB‚ÌÅ“K‰»ŠÖ”(fminsearch)‚ğg‚Á‚ÄƒOƒŠƒbƒhã‚Å‰¿’lŠÖ”‚Æ­ôŠÖ”‚Ì’l‚ğ’T‚·
-            % ‰Šú’l‚Í0.01
+            % MATLABã®æœ€é©åŒ–é–¢æ•°(fminsearch)ã‚’ä½¿ã£ã¦ã‚°ãƒªãƒƒãƒ‰ä¸Šã§ä¾¡å€¤é–¢æ•°ã¨æ”¿ç­–é–¢æ•°ã®å€¤ã‚’æ¢ã™
+            % åˆæœŸå€¤ã¯0.01
             [pfcn_yng(i, z, age), vfcn_yng(i, z, age)] = fminsearch(@bellman_eq_worker, 0.01);
         
         end
     end
 
-    % fminsearch‚ÍÅ¬’l‚ğ’T‚·ŠÖ”‚È‚Ì‚Å•„†‚ğ”½“]‚³‚¹‚é
+    % fminsearchã¯æœ€å°å€¤ã‚’æ¢ã™é–¢æ•°ãªã®ã§ç¬¦å·ã‚’åè»¢ã•ã›ã‚‹
     vfcn_yng(:, :, age) = -1*vfcn_yng(:, :, age);
 
 end
 
 toc
 
-%% }‚ğ•`‚­
+%% å›³ã‚’æã
 
 age = linspace(20, 64, 45);
 
 figure;
 plot(age, eta, '-', 'linewidth', 3);
-xlabel('”N—î', 'Fontsize', 16);
-ylabel('”N—î‚²‚Æ‚Ì˜J“­¶Y«', 'Fontsize', 16);
+xlabel('å¹´é½¢', 'Fontsize', 16);
+ylabel('å¹´é½¢ã”ã¨ã®åŠ´åƒç”Ÿç”£æ€§', 'Fontsize', 16);
 xlim([20,65]);
 ylim([0,1.5]);
 grid on;
@@ -145,8 +145,8 @@ age = linspace(20, 105, 86);
 
 figure;
 plot(age, surv, '-', 'linewidth', 3);
-xlabel('”N—î', 'Fontsize', 16);
-ylabel('¶‘¶Šm—¦', 'Fontsize', 16);
+xlabel('å¹´é½¢', 'Fontsize', 16);
+ylabel('ç”Ÿå­˜ç¢ºç‡', 'Fontsize', 16);
 xlim([20,105]);
 ylim([0,1.0]);
 grid on;
@@ -157,16 +157,16 @@ figure;
 plot(agrid, vfcn_yng(:, 1, 1), '-', 'linewidth', 3); hold('on');
 plot(agrid, vfcn_yng(:, 2, 1), '-', 'linewidth', 3);
 plot(agrid, vfcn_yng(:, 3, 1), '-', 'linewidth', 3); hold('off');
-xlabel('’™’~', 'Fontsize', 16);
-ylabel('‰¿’lŠÖ”', 'Fontsize', 16);
+xlabel('è²¯è“„', 'Fontsize', 16);
+ylabel('ä¾¡å€¤é–¢æ•°', 'Fontsize', 16);
 grid on;
 
 figure;
 plot(agrid, pfcn_old(:, 1, 1), '-', 'linewidth', 3); hold('on');
 plot(agrid, pfcn_old(:, 2, 1), '-', 'linewidth', 3);
 plot(agrid, pfcn_old(:, 3, 1), '-', 'linewidth', 3); hold('off');
-xlabel('’™’~', 'Fontsize', 16);
-ylabel('­ôŠÖ”', 'Fontsize', 16);
+xlabel('è²¯è“„', 'Fontsize', 16);
+ylabel('æ”¿ç­–é–¢æ•°', 'Fontsize', 16);
 grid on;
 
 return
