@@ -2,3 +2,5 @@
 Julia/Jupyter/.ipynb_checkpoints/
 
 *.asv
+
+.DS_Store
