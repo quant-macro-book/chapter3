@@ -2,20 +2,14 @@
 
 ## 第3章：動的計画法
 
-### Julia
-* TBW.
-
-### MATLAB
-* **3.2 内挿法と外挿法**の結果を再現するファイル -> how_to_interpolation.m (先にmain_robinson_crusoe.mを実行してください。)
-* **3.3 ロビンソン・クルーソーモデル**の結果を再現するファイル -> main_robinson_crusoe.m、BellmanEq.m、CRRA.m
-* **5.2.1 操作変数が離散的な場合の価値関数と政策関数 -> main_ddp.m、CRRA.m、mu_CRRA.m
-* **5.2.2 操作変数が連続的な場合の価値関数の繰り返し誤差とオイラー方程式の誤差**の結果を再現するファイル -> main_ndp.m、BellmanEq.m、CRRA.m、mu_CRRA.m、
-
-### Python
-* TBW.
+### Julia&MATLAB
+* 各節の番号に対応したフォルダにコードが格納されています。
 
 ### Fortran&R
 * グリッドサーチ用コードのみ
+
+### Python
+* RAを努めていただいた小野泰輝さんが作成したPython用再現コードです。もちろん誤りがあった場合、すべての責任は著者たちのものです。
 
 #### 注意
 * MATLABではfminsearchを使っているため、インストールされているライブラリによっては動かない可能性があります。
