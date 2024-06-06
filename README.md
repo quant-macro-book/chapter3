@@ -4,6 +4,7 @@
 
 #### Julia&MATLAB
 * 各節の番号に対応したフォルダにコードが格納されています。
+* Juliaの`3_10_Structural_Estimation`のコードについてはJupyter内の`6_Structural_estimation.ipynb`を参照してください。
 
 #### Fortran&R
 * グリッドサーチ用コードのみ
